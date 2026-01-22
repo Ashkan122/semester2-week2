@@ -18,9 +18,10 @@ def menu():
     print("2 - View Department")
     print("3 - View Courses")
     print("4 - View Students by Course")
+    print("5 - View Number of Students per Course")
     print("Q - quit")
     choice = -1
-    while (choice not in ["1","2","3","4","Q"]):
+    while (choice not in ["1","2","3","4","5","Q"]):
         choice = input("Enter your choice: ").upper()
     return choice
 
@@ -107,6 +108,12 @@ def view_student_by_course(db):
     for student in cursor:
         print(f"Name: {student[0]}")
 
+def review_student_numbers(db):
+    '''
+    Print the number of students registered for each course.    
+    :param db: Database object to query
+    '''
+    pass
 
 def main():
 
@@ -126,6 +133,9 @@ def main():
 
             case "4":
                 view_student_by_course(db)
+            
+            case "5":
+                review_student_numbers(db)
 
             case "Q":
                 exit()
