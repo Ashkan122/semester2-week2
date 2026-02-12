@@ -1,3 +1,5 @@
+#Ashkan Ramjerdi  xcqc0000
+
 """
 This is where you should write your code and this is what you need to upload to Gradescope for autograding.
 
@@ -69,4 +71,14 @@ def top_customers_by_spend(conn, limit):
     Order by total_spent descending.
     Limit the number of rows returned to `limit`.
     """
-    pass
+    query= """
+    SELECT customers.customer_name, sum(price) as total_spent
+    FROM tickets
+    JOIN customers ON tickets.customer_id=customers.customer_id
+    GROUP BY customer_name
+    ORDER BY total_spent DESC
+    LIMIT ?;
+    """
+    cursor = conn.execute(query, (limit,))
+    tickets=cursor.fetchall()
+    return tickets
